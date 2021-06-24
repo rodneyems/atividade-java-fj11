@@ -4,7 +4,7 @@ public class Categoria {
 	private String nome;
 	private String descricao;
 	
-	Categoria(String nome){
+	public Categoria(String nome){
 		this.setNome(nome);
 	}
 	
