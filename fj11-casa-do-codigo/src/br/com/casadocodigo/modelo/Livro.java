@@ -2,13 +2,17 @@ package br.com.casadocodigo.modelo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Livro implements Comparable<Livro>{
 	private String titulo;
 	private String descricao;
 	private int isbn;
-	private static List<Livro> colecao = new ArrayList<Livro>();
+	private Categoria categoria;
+	public static List<Livro> colecao = new ArrayList<Livro>();
+//	public static HashSet<Livro> colecao = new HashSet<Livro>();
+	
 	
 	public Livro (String titulo, int isbn) throws Exception {
 		this.setIsbn(isbn);
@@ -21,11 +25,6 @@ public class Livro implements Comparable<Livro>{
 	}
 	
 	public static void getColecao() {
-		for (Livro livro : colecao) {
-			System.out.println(livro);
-		}
-		Collections.sort(colecao);
-			System.out.println("AGORA ORDENADO");
 		for (Livro livro : colecao) {
 			System.out.println(livro);
 		}
@@ -70,6 +69,28 @@ public class Livro implements Comparable<Livro>{
 		return isbn;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + isbn;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (isbn != other.isbn)
+			return false;
+		return true;
+	}
+
 	public void setIsbn(int isbn) {
 		for (Livro livro : colecao) {
 			if (livro.getIsbn() == isbn) {
